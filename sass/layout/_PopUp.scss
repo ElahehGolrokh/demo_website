@@ -1,0 +1,107 @@
+.PopUp{
+
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(10,10,10,.85);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    transition: all .3s;
+
+    @supports (-webkit-backdrop-filter: blur(10px))
+              or (backdrop-filter: blur(10px)){
+
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+                background-color: rgba(10,10,10,.3);
+              }
+
+
+    &__container{
+
+        @include abscenter;
+        width: 75%;
+        // height: 50rem;
+        background-color: $txt-color1;
+        box-shadow: 0 2rem 4rem rgba(black , .2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate(-50%,-50%)scale(.25);
+        transition: all .4s .2s; //we add some delay to allow the black background comes first
+
+    }
+
+    &__left{
+        width: 33.33333%;
+        display: table-cell;
+    }
+
+    &__right{
+        width: 66.6666666%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+
+    &__image{
+        display: block;
+        width: 100%;
+
+    }
+
+    &__text{
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+
+        -moz-column-count: 2;
+        -moz-column-gap: 4rem; //1em=14px here
+        -moz-column-rule: 1px solid rgba($color-btn-text,.4);
+
+
+        column-count: 2;
+        column-gap: 4rem; //1em=14px here
+        column-rule: 1px solid rgba($color-btn-text,.4);
+
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+    }
+
+    &:target{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__container{
+        opacity: 1;
+        transform: translate(-50%,-50%)scale(1);
+
+    }
+
+    &__close{
+
+        &:link ,
+        &:visited{
+            color: $color-primary-light;
+            font-size: 3rem;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .3s;
+            line-height: 1;
+        }
+        &:hover{
+            color: $color-btn-text;
+        }
+        
+    }
+
+}
